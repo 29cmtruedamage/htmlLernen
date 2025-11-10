@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Ege Akg\u00fcl",
+        "phone": "1234"
+    },
+    {
+        "name": "Ayhan Akg\u00fcl",
+        "phone": "8276312"
+    },
+    {
+        "name": "Eda Akg\u00fcl",
+        "phone": "128u3123"
+    },
+    {
+        "name": "d\u00f6nd\u00fc akg\u00fcl",
+        "phone": "129031239"
+    },
+    {
+        "name": "Alexander Wegle",
+        "phone": "1231241243"
+    },
+    {
+        "name": "muhammed kani",
+        "phone": "564654"
+    }
+]
