@@ -11,24 +11,16 @@
     <style>
         body{
             font-family: "Elms Sans", sans-serif;
-            background-color: #b0e8e8;
+            background-color: #E0E0E0;
             margin: 0;
         }
-        .Inhalt{
-            padding: 100px;
-            text-align: center;
-            background-color: burlywood;
-            margin-top: 50px;
-        }
-        .Inhalt p{
-            color: brown;
-        }
+        
         .bsp{
             flex-direction: column;
             padding-top: 100px;
             background-color: #2461a6;
             width: 20%;
-            height: 40vh;
+            height: 400px;
             
         }
         
@@ -47,7 +39,7 @@
         }
         
         .phpBlock{
-            background-color: wheat;
+            background-color: #FFFFFF;
             width: 80%;
             border-radius: 10px;
             padding: 20px;
@@ -101,7 +93,46 @@
         .Knt{
             display: inline-block;
         }
-        
+        .Kontakte{
+           
+        }
+        .person{
+            position: relative;
+            margin-bottom: 8px;
+            background-color: lightgrey;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        .anrufen{
+            position: absolute;
+            text-decoration: none;
+            right: 0;
+            top: 0;
+            background-color: khaki;
+            padding: 1px;
+        }
+        .anrufen a{
+            text-decoration: none;
+            color: darkgoldenrod;
+        }
+        .anrufen:hover{
+            background-color: darkkhaki;
+        }
+        .löschen{
+            position: absolute;
+            text-decoration: none;
+            right: 0px;
+            top: 30px;
+            background-color: red;
+            padding: 1px;
+        }
+        .löschen a{
+            text-decoration: none;
+            color: black;
+        }
+        .löschen:hover{
+            background-color: lightcoral;
+        }
         
     </style>
 </head>
@@ -137,7 +168,20 @@
             }
                 $headline = "Herzlich willkommen";
                 
-                
+                if($_GET["page"] == "contactDeleted") {
+                    $id = $_GET["id"];
+                    $text = file_get_contents('contacts.txt', true);
+                    $contacts = json_decode($text, true);
+                    foreach ($contacts as $key => $contact) {
+                        if($contact["name"] == $id){
+                            unset($contacts[$key]);
+                            break;
+                        }
+                    }
+                    $contacts = array_values($contacts);
+                    file_put_contents('contacts.txt', json_encode($contacts, JSON_PRETTY_PRINT));
+                    echo "Kontakt gelöscht: " . $id;
+                }
                 if($_GET["page"] == "start"){
                     $currentSitename = "Startseite";
                     echo "<h1>" . $headline ." in ". $currentSitename . "</h1>";
@@ -164,31 +208,31 @@
                     </form>";
             }elseif($_GET["page"] == "showContacts"){
                 echo "<h1>Hier werden deine Kontakte angezeigt</h1>";
-                echo "<ul>";
+                echo "<div class='Kontakte'>";
                 foreach($contacts as $contact){
-                    echo "<li>" . $contact["name"] . " - " . $contact["phone"] . "</li>";
+                    echo "<div class='person'>
+                            <b><u>" . $contact["name"] . "</u></b><br>".
+                            $contact["phone"] . 
+                            "<div class='anrufen'> 
+                                <a href='tel:anrufen'> Anrufen </a>
+                            </div>".
+                            "<div class='löschen'> 
+                                <a href='index.php?page=contactDeleted&id=".$contact["name"]."'> Löschen </a>
+                            </div>".
+                         "</div>";
                 }
-                echo "</ul>";
+                echo "</div>";
             }
-            else{
-                echo "<h1>$headline</h1>";
-                $bsp1 = ["Name" => "ALSAls", "Banene" => 2];
-                $bsp2 = ["lay" => 123, "hoooy" => 13];
-                $bsp3 = [$bsp1, $bsp2];
-                echo "". $bsp3[0]["Name"] ;
-            }
+            
 
                 
             ?>
         </div>
     </div>
-    <div class="Inhalt">
-        <p>Folgender Inhalt: </p>
-        laylaylom 
-    </div>
+ 
 
     <div class="Bar">
-        <h1>MenuBar</h1>
+        <h1>Kontaktbuch</h1>
         <a href="myFirstCode.php?page=impressum">Suche</a>
         <a href="index.php?page=contacts">2_Suchelement</a>
     </div>
