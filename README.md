@@ -4,5 +4,6 @@ To see the full App, you have to copy the code into the /htdocs file in your loc
 
 
 
-https://github.com/user-attachments/assets/c2295b9a-c766-4a5d-835b-954961100d93
+
+https://github.com/user-attachments/assets/5fcc6682-b8c4-40dc-9b4b-c3e3591a6860
 
